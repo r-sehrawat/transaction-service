@@ -32,6 +32,7 @@ public class TransactionController {
 	private TransactionTypeMapper transactionTypeMapper;
 	
 	
+	//O(1) complexity to perform put operations in 3 different entities
 	@PutMapping("/transaction/{transaction_id}")
 	public Map<String,String> putTransaction( @PathVariable("transaction_id") Long transactionId, @RequestBody Transaction txn){
 	
@@ -55,6 +56,7 @@ public class TransactionController {
 	
 	
 	//API to return transaction info corresponding to the id
+	//O(1) complexity is retrieving transactions
 	@GetMapping("/transaction/{transaction_id}")
 	public Transaction getTransactionType( @PathVariable("transaction_id") Long transactionId){
 	       return transactionService.getTransactionById(transactionId);
@@ -62,6 +64,7 @@ public class TransactionController {
 	
 	
 	//API to return transaction ids for a type
+	//O(1) complexity is retrieving all the types attached
 	@GetMapping("/type/{type}")
 	public Set<Long> getTransactionType( @PathVariable("type") String type){
 	       return transactionTypeMapper.getTransactionIdsOfType(type);	
@@ -70,6 +73,7 @@ public class TransactionController {
 	
 	
 	//API to calculate the sum of transaction and all it's child
+	//O(n) complexity for calculating the sum where n are total linked ids with transactionId
 	@GetMapping("/sum/{transaction_id}")
 	public Map<String,Double> getSum( @PathVariable("transaction_id") Long transactionId){
 	       
