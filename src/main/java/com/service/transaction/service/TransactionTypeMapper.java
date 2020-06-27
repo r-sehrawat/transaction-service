@@ -6,6 +6,9 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+//Service to keep a mapping in form of type corresponding to transaction Ids
+//abstraction is there so that it can be easily broken into a new microservice or db entity
+
 @Service
 public class TransactionTypeMapper {
 	
@@ -13,6 +16,10 @@ public class TransactionTypeMapper {
 	
 	
 	public Boolean createTypeMapping(String type, long id) {
+		
+		if(type==null || type == "") {
+			return false;
+		}
 		
 		if(!typeMap.containsKey(type)) {
 			typeMap.put(type, new HashSet<>());

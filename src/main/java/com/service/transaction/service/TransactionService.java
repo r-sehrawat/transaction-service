@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.service.transaction.entity.Transaction;
 
+
+//Service to keep all the transaction data
+// Abstraction provided so it can be easily segregated into a new service or DB entity 
+
 @Service
 public class TransactionService {
 	
